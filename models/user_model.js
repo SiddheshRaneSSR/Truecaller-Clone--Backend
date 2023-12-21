@@ -2,8 +2,8 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database'); // Assuming you have a sequelize instance
 const bcrypt = require('bcrypt');
-const Contact = require('./contact_model');
-const SpamReport = require('./SpamReport_model');
+const Contact = require('../models/contact_model');
+const SpamReport = require('../models/SpamReport_model');
 
 const UserProfile = sequelize.define('UserProfile', {
   name: {

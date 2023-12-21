@@ -1,7 +1,7 @@
 
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database'); 
-
+const user = require("../models/user_model");
 const SpamReport = sequelize.define('SpamReport', {
   userID: {
     type: DataTypes.INTEGER,
@@ -18,7 +18,7 @@ const SpamReport = sequelize.define('SpamReport', {
   
 });
 
-SpamReport.belongsTo(UserProfile, { foreignKey: 'USERID' });
+SpamReport.belongsTo(user, { foreignKey: 'USERID' });
 
 
 module.exports = SpamReport;

@@ -6,6 +6,7 @@ const search_router = require("./routers/search_routes/search_router");
 const spam_router = require("./routers/spam_routes/spam_router");
 const session = require("express-session");
 const sequelize = require("./config/database");
+const { FORCE } = require('sequelize/types/index-hints');
 
 // Check database connection
 sequelize
