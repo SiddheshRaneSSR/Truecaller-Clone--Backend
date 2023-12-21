@@ -1,42 +1,27 @@
-// import jwt for check the user is valid user or not
+
 const jwt = require('jsonwebtoken');
 
-// import user model for get the user data
-const usermodel = require('../models/user_model.js');
+const authenticateUser = (req, res, next) => {
+  // Get the token from the request header
+  const token = req.header('Authorization');
 
-// function for auth  
-const check_user_auth = async (req,res,next) => {
-    let token;
-    //  get authorization data from headers
-    const {authorization} = req.headers;
+  // Check if the token is provided
+  if (!token) {
+    return res.status(401).json({ message: 'Unauthorized - No token provided' });
+  }
 
-    // check all data is comming are not
-    if (authorization && authorization.startsWith('Bearer')) {
-        try {
-            // get token from header
-            token = authorization.split(' ')[1];
+  try {
+    // Verify the token
+    const decoded = jwt.verify(token, 'your-secret-key'); // Replace 'your-secret-key' with your actual secret key
 
-            // verify token
-            const {userid} = jwt.verify(token,process.env.JWT_SECRET_KEY);
+    // Attach user information to the request for further use
+    req.user = decoded;
 
-            // get payload data from jwt
-                // const _user_data = jwt.decode(token)
+    // Move to the next middleware or route handler
+    next();
+  } catch (error) {
+    return res.status(401).json({ message: 'Unauthorized - Invalid token' });
+  }
+};
 
-            // get user from token 
-            req.user = await usermodel.findById(userid).select("-password");
-            
-            // next call
-            next();
-        } catch (error) {
-            // send the error message for user
-            res.status(401).send({"status":"failed","msg":"Unauthorized User"});
-        }
-    }
-    // send the error meaage for user if the token is not comming
-    if (!token) {
-        res.status(401).send({"status":"failed","msg":"Unauthorized User no token"});
-    }
-}
-
-// export middleware
-    module.exports = check_user_auth;
+module.exports = authenticateUser;

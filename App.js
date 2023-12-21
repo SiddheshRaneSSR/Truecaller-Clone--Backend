@@ -1,16 +1,21 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
-const dbconnect = require('./config/db');
-const router = require("./routers/router");
+const user_router = require("./routers/user_routes/user_router");
+const search_router = require("./routers/search_routes/search_router");
+const spam_router = require("./routers/spam_routes/spam_router");
 const session = require("express-session");
+const sequelize = require("./config/database");
 
-
-
-
-// Connect DB
-dbconnect();
+// Check database connection
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Database connection has been established successfully.');
+  })
+  .catch((err) => {
+    console.error('Unable to connect to the database:', err);
+  });
 
 
 //  Middlewares
@@ -29,18 +34,9 @@ app.use(session({
 
 
 
-app.get(['/','/login'],(req,res)=>{
-
-    res.render("loginUser");
-
-})
-app.get('/registerUser',(req,res)=>{
-
-    res.render("registerUser");
-
-})
-
-app.use('',router);
+app.use('/api/v1/users',user_router);
+app.use('/api/v1/search',search_router);
+app.use('/api/v1/spam',spam_router);
 
 // Start the server 
 const PORT = process.env.PORT || 4000;

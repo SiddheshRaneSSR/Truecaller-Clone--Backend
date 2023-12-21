@@ -1,7 +1,7 @@
 const session = require('express-session');
 
 
-exports.userLogout = async (req, res) => {
+exports.user_logout = async (req, res) => {
     // Assuming you are using express-session
     req.session.destroy((err) => {
         if (err) {
