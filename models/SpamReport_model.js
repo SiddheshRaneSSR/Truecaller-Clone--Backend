@@ -18,7 +18,11 @@ const SpamReport = sequelize.define('SpamReport', {
   
 });
 
-SpamReport.belongsTo(user, { foreignKey: 'USERID' });
+SpamReport.associate = models =>{
+  SpamReport.belongsTo(models.user_model,{
+    foreignKey: 'USERID'
 
+  })
+}
 
 module.exports = SpamReport;

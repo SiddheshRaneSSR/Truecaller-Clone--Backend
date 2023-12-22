@@ -1,9 +1,7 @@
 
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database'); 
-const UserProfile = require("../models/user_model");
-
-
+const sequelize = require('../config/database');
+const user = require('../models/user_model');
 
 const Contact = sequelize.define('Contact', {
   contact_name: {
@@ -16,11 +14,24 @@ const Contact = sequelize.define('Contact', {
   },
 });
 
-// Define the association: Contact belongs to one User
-Contact.belongsTo(UserProfile, { foreignKey: 'user_id' });
+// // Define the association: Contact belongs to one UserProfile
+// Contact.belongsTo(user, { foreignKey: 'USERID' });
 
-// Define the inverse association: User has many Contacts
-UserProfile.hasMany(Contact, { foreignKey: 'user_id' });
+// // Define the inverse association: UserProfile has many Contacts
+// user.hasMany('Contact', { foreignKey: 'USERID' });
+
+
+Contact.associate = models =>{
+  Contact.belongsTo(models.user_model,{
+    foreignKey: 'USERID'
+
+  })
+}
+
+
+
+
+
 
 
 

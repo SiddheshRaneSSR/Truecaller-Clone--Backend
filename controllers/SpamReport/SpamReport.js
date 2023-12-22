@@ -1,9 +1,5 @@
-// spam_report_routes.js
-const express = require('express');
-const router = express.Router();
-const authenticateUser = require('./path-to-your-authMiddleware');
-const SpamReport = require('./path-to-your-spam-report-model');
-const UserProfile = require('./path-to-your-user-profile-model');
+
+const SpamReport = require('../../models/SpamReport_model');
 
 // Endpoint to mark a phone number as spam
 exports.SpamReport =  async (req, res) => {

@@ -1,10 +1,7 @@
 
-const express = require('express');
-const router = express.Router();
 const UserProfile = require('../../models/user_model');
 const SpamReport = require('../../models/SpamReport_model');
 const Contact = require('../../models/contact_model');
-const authenticateUser = require('../../middlewares/auth_middleware');
 
 // Display details for a person
 exports.SearchUser =  async (req, res) => {

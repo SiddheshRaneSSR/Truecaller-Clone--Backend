@@ -1,5 +1,5 @@
 {
-  "name": "hrms2",
+  "name": "CodingTask",
   "version": "1.0.0",
   "description": "",
   "main": "App.js",
@@ -12,7 +12,9 @@
     "bcrypt": "^5.1.1",
     "empress": "^0.0.2",
     "jsonwebtoken": "^9.0.2",
+    "multiformats": "^9.9.0",
     "pg": "^8.11.3",
-    "sequelize": "^6.35.2"
+    "sequelize": "^6.35.2",
+    "socket.io": "^4.7.2"
   }
 }

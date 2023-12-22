@@ -1,0 +1,89 @@
+
+
+****Index
+
+
+1.Modules
+2.Data Model
+3.API's
+4.Installation
+5.env
+
+
+1.Modules
+
+    1.Register
+        1.User -create
+        2.User login
+        3.User -logout
+    2.Search
+        1.User - name
+        2.User - phone number 
+        3.phone number likelihood
+    3.Spam
+        1.Report a phone number as Spam
+ 
+2.Data Model 
+
+    1.User Model
+        1.userID
+        2.name
+        3.phone number
+        4.email
+        5.password(Encrypted)
+    
+    2.Spam Model
+        1.SpamID
+        2.userID
+        3.phone number
+        4.Timespam
+
+    3.Contact Model
+        1.contactID 
+        2.contact_name
+        3.contact_phone_number
+
+3.API's
+
+    1.user 
+        1./login  - POST
+        2./Register/ - POST
+        3./logout - POST
+
+    2.Spam
+        1./SpamREport/:id - POST
+
+    3.Search 
+        1./SearchUserByName/:name - POST
+        2./SearchUserByphoneNumber/:phoneNumber - POST
+        3./SearchUser/:id -POST
+
+
+
+
+
+4.Installation
+
+    1.Make sure you have Nodejs and a SQL db installed(i have used postgresql)
+    2.unzip the CodingTask file
+    3.Open terminal inside the folder and enter npm install 
+    4.make sure all the packages are installed 
+    5.enter "Node App.js" command in terminal to start the project.
+    
+5. .env
+
+    1.make sure you have .env file in your folder 
+    2.these are the variable which needs to be in there
+    3.  
+        port = ; //enter a port number 
+
+        JWT_SECRET_KEY="CloudKey"  // enter a secret key - could be anything 
+        SESSION_SECRET_KEY = "SESSION" // enter a secret key - could be anything
+
+
+
+        host=""   //enter a host name by default its localhost 
+        postgreSQLport="" //enter port number of your db server 
+        username=""  // enter db server username - by default its db name 
+        password = "" //enter db server password 
+        database_name =""  //enter the db name 
